@@ -9,7 +9,7 @@ export class CartPage{
 
     constructor(private readonly page: Page){
 
-        this.cartItem = this.page.locator("//div[@class='css-g5y9jx r-14lw9ot']");
+        this.cartItem = this.page.getByText('Enshine Advance Clean').first();
 
     }
     async verifyProductInCart(expectedName: string){

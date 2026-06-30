@@ -36,7 +36,7 @@ test.describe('Flipkart E2E', () =>{
 
             if(await productPage.isLoginRequired()){
                 console.log('test Blocked by login Wall. Real Credentials required.');
-                test.skip();
+                
             }
         });
 

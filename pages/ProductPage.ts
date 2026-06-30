@@ -10,7 +10,7 @@ export class ProductPage{
     constructor(private readonly page: Page){
 
     this.addToCartBtn = page.locator('._1psv1zeb9._1psv1ze0._1psv1zeku > div > div > div:nth-child(2)').first();
-    this.loginTitle = page.getByText('Login', { exact: true });
+    this.loginTitle = page.getByText('Login', { exact: true }).first();
     
     }
 
