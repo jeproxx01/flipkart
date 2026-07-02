@@ -48,7 +48,29 @@ test.describe('Flipkart E2E', () =>{
 
     });
 
+    test('Filter and Sort Functionality on Search Results Page', async ({page}) =>{
 
+
+            const homePage = new HomePage(page);
+            const searchResultPage = new SearchResultPage(page);
+
+        await test.step('Step 1: Search For Product', async() => {
+
+            await homePage.goto();
+            await homePage.searchForProduct('Shoes');
+            
+        });
+
+        await test.step('Step 2: Select Brand Filter',async() =>{
+
+            await searchResultPage.selectBrandName();
+            await searchResultPage.selectSort();
+
+
+        });
+
+
+    });
 
 
 
