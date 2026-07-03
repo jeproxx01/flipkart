@@ -41,6 +41,7 @@ export class SearchResultPage extends BasePage{
         await this.lowToHigh.click()
 
         await this.page.waitForFunction((oldUrl) => window.location.href !== oldUrl, currentUrl);
+        await expect(this.page).toHaveURL(/price_asc/);
 
         const prices = await this.page.locator('.hZ3P6w').allTextContents();
         console.log('Prices:', prices);
