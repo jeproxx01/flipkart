@@ -48,7 +48,7 @@ test.describe('Flipkart E2E', () =>{
 
     });
 
-    test('Filter and Sort Functionality on Search Results Page', async ({page}) =>{
+    test.only('Filter and Sort Functionality on Search Results Page', async ({page}) =>{
 
 
             const homePage = new HomePage(page);

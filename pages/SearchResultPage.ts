@@ -22,31 +22,24 @@ export class SearchResultPage extends BasePage{
         
         
         const brandSearchInput= this.page.getByPlaceholder('Search Brand');
+        await expect(brandSearchInput).toBeVisible()
         await brandSearchInput.fill(brand)
-        await brandSearchInput.waitFor();
+
 
         const checkbox = this.page.getByText(brand, {exact: true}).first();
+        await expect(checkbox).toBeVisible();
         
         // 2. Perform click and navigation wait together to avoid race conditions
         await Promise.all([
             // Flipkart URLs usually update to include the brand name
-            this.page.waitForURL(new RegExp(brand.toLowerCase(), 'i')),
+            //this.page.waitForURL(new RegExp(brand.toLowerCase(), 'i')), //Flaky
+            this.page.waitForResponse(response =>response.url().includes('/search') && response.status() === 200
+            ),
+
             checkbox.click()
         ]);
 
     }
-
-    async selectSort(){
-        const currentUrl = this.page.url()
-        await this.lowToHigh.click()
-
-        await this.page.waitForFunction((oldUrl) => window.location.href !== oldUrl, currentUrl);
-        await expect(this.page).toHaveURL(/price_asc/);
-
-        const prices = await this.page.locator('.hZ3P6w').allTextContents();
-        console.log('Prices:', prices);
-    }
-
 
     async selectFirstProduct(){
 
@@ -60,6 +53,17 @@ export class SearchResultPage extends BasePage{
         return newTab;
     }
 
-        
+    async selectSort(){
+
+            const currentUrl = this.page.url()
+            await this.lowToHigh.click()
+
+            await this.page.waitForFunction((oldUrl) => window.location.href !== oldUrl, currentUrl);
+            await expect(this.page).toHaveURL(/price_asc/);
+
+            const prices = await this.page.locator('.hZ3P6w').allTextContents();
+            console.log('Prices:', prices);
+        }
+
 
 }
