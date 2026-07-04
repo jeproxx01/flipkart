@@ -63,8 +63,7 @@ test.describe('Flipkart E2E', () =>{
 
         await test.step('Step 2: Select Brand Filter',async() =>{
 
-            await searchResultPage.selectBrandName('NIKE');
-            await searchResultPage.selectFootwearCategory("Men's Footwear");
+            await searchResultPage.selectBrandName();
             await searchResultPage.selectSort();
 
 

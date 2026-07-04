@@ -16,17 +16,9 @@ export class SearchResultPage extends BasePage{
         this.secondProduct = page.getByRole('link', { name: 'NIKE COURT ROYALE 2 NN' }).first();
     }
 
-    async selectFootwearCategory(optionName: string){
 
-        const footwearCategory = this.page.getByTitle('Footwear').first();
-        await expect(footwearCategory).toBeVisible();
 
-        const option = this.page.getByText(optionName, {exact: true});
-        await option.click();
-
-    }
-
-    async selectBrandName(brand: string) {
+    async selectBrandName(brand: string = 'NIKE') {
         
         
         const brandSearchInput= this.page.getByPlaceholder('Search Brand');
