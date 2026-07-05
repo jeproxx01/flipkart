@@ -5,20 +5,28 @@ import { BasePage} from './BasePage';
 export class SearchResultPage extends BasePage{
 
     private readonly firstProduct: Locator;
-    private readonly secondProduct: Locator;
     private readonly lowToHigh: Locator;
 
     constructor(page: Page){
 
         super(page)
-        this.firstProduct = page.getByRole('link', { name: 'Enshine Advance Clean Toothbrush with Ultra Soft Bristl...' })
+        this.firstProduct = page.getByRole('link', { name: 'Enshine Advance Clean Toothbrush with Ultra Soft Bristl...' }).first();
         this.lowToHigh = page.getByText('Price -- Low to High');
-        this.secondProduct = page.getByRole('link', { name: 'NIKE COURT ROYALE 2 NN' }).first();
     }
 
 
+       async selectFootwearCategory(optionName: string){
 
-    async selectBrandName(brand: string = 'NIKE') {
+        const footwearCategory = this.page.getByTitle('Footwear').first();
+        await expect(footwearCategory).toBeVisible();
+    
+             const option = this.page.getByText(optionName, {exact: true});
+        await option.click();
+
+       }
+
+
+    async selectBrandName(brand: string ) {
         
         
         const brandSearchInput= this.page.getByPlaceholder('Search Brand');
