@@ -1,4 +1,4 @@
-import {test} from '@playwright/test';
+import {test, expect} from '@playwright/test';
 import { SearchResultPage } from '../pages/SearchResultPage';
 import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
@@ -65,14 +65,14 @@ test.describe('Flipkart E2E', () =>{
 
             await searchResultPage.selectBrandName('NIKE');
             await searchResultPage.selectFootwearCategory("Men's Footwear")
-            await searchResultPage.selectSort();
+            await searchResultPage.sortByLowtoHigh();
+            await expect(page).toHaveURL(/.*price_asc/);
 
 
         });
 
 
     });
-
 
 
 
