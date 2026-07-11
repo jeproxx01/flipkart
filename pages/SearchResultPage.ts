@@ -7,6 +7,7 @@ export class SearchResultPage extends BasePage{
     private readonly firstProduct: Locator;
     private readonly lowToHigh: Locator;
     private readonly priceText: Locator
+    public readonly noResultsMessage: Locator;
 
     constructor(page: Page){
 
@@ -14,6 +15,7 @@ export class SearchResultPage extends BasePage{
         this.firstProduct = page.getByRole('link', { name: 'Enshine Advance Clean Toothbrush with Ultra Soft Bristl...' }).first();
         this.lowToHigh = page.getByText('Price -- Low to High');
         this.priceText = page.locator('.hZ3P6w');
+        this.noResultsMessage = page.getByText('Sorry, no results found!');
     }
 
 
@@ -84,5 +86,7 @@ export class SearchResultPage extends BasePage{
             parseFloat(price.replace(/[^0-9.]/g, ''))
         );
     } 
+
+
 
 }
